@@ -110,6 +110,48 @@ public class YelpDao {
 			return null;
 		}
 	}
+
+	public Object getAllUserByN(int n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	public List<User> getAllUsersByN(){
+		String sql = "SELECT * FROM Users " ;
+		List<User> result = new ArrayList<User>();
+		Connection conn = DBConnect.getConnection();
+
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+
+				User user = new User(res.getString("user_id"),
+						res.getInt("votes_funny"),
+						res.getInt("votes_useful"),
+						res.getInt("votes_cool"),
+						res.getString("name"),
+						res.getDouble("average_stars"),
+						res.getInt("review_count"));
+				
+				result.add(user);
+			}
+			res.close();
+			st.close();
+			conn.close();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Object getAllUserByN(int n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
